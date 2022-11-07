@@ -1,31 +1,29 @@
-# I am just screwing around to see if this works.
+import pandas as pd
+from binance.client import Client
+import datetime
 
-from binance.spot import Spot 
+# YOUR API KEYS HERE
+api_key = ""    #Enter your own API-key here
+api_secret = "" #Enter your own API-secret here
 
-client = Spot()
+bclient = Client(api_key=api_key, api_secret=api_secret)
 
-# Get server timestamp
-print(client.time())
-# Get klines of BTCUSDT at 1m interval
-print(client.klines("BTCUSDT", "1m"))
-# Get last 10 klines of BNBUSDT at 1h interval
-print(client.klines("BNBUSDT", "1h", limit=10))
+start_date = datetime.datetime.strptime('1 Jan 2016', '%d %b %Y')
+today = datetime.datetime.today()
 
-# api key/secret are required for user data endpoints
-client = Spot(key='<api_key>', secret='<api_secret>')
+def binanceBarExtractor(symbol):
+    print('working...')
+    filename = '{}_MinuteBars.csv'.format(symbol)
 
-# Get account and balance information
-print(client.account())
+    klines = bclient.get_historical_klines(symbol, Client.KLINE_INTERVAL_1MINUTE, start_date.strftime("%d %b %Y %H:%M:%S"), today.strftime("%d %b %Y %H:%M:%S"), 1000)
+    data = pd.DataFrame(klines, columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume', 'close_time', 'quote_av', 'trades', 'tb_base_av', 'tb_quote_av', 'ignore' ])
+    data['timestamp'] = pd.to_datetime(data['timestamp'], unit='ms')
 
-# Post a new order
-params = {
-    'symbol': 'BTCUSDT',
-    'side': 'SELL',
-    'type': 'LIMIT',
-    'timeInForce': 'GTC',
-    'quantity': 0.002,
-    'price': 9500
-}
+    data.set_index('timestamp', inplace=True)
+    data.to_csv(filename)
+    print('finished!')
 
-response = client.new_order(**params)
-print(response)
+if __name__ == '__main__':
+    # Obviously replace BTCUSDT with whichever symbol you want from binance
+    # Wherever you've saved this code is the same directory you will find the resulting CSV file
+    binanceBarExtractor('BTCUSDT')
