@@ -1,0 +1,8 @@
+Today I am working on begining to develop our pipeline to deploy / ping our
+smart contracts and interface with python.
+
+I am going to create some bash scripts that try to:
+- Determine what O/S is being used (I will develop the linux support as I am using WSL). Later
+on, someone can do it with Windows if they prefer to use Windows.
+- Interface with the smart contract (Think "run truffle, send data to storage, stuff like that)
+- Try to pull data from python executables and feed it to smart contract.
