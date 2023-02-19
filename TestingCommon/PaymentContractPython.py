@@ -7,7 +7,7 @@ def ExecutePayment(amount, walletAddress):
     publicwalletAddress = str(walletAddress)
 
     # A constructor will go here in solidity, but not necessary for the black box approach
-    print(publicAmount , " has been send to " , publicwalletAddress)
+    print(publicAmount , " has been sent to " , publicwalletAddress)
 
 # Just a simple main for debug purposes
 testAmount = input("Enter how much you'd like to send \n")
