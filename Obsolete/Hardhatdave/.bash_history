@@ -1,2 +1,0 @@
-git some bitches
-ls
