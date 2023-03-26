@@ -3,3 +3,6 @@
 /migrate
 /scripts
 /test
+
+# Ignore the outputs of our python test program that prints sample data
+/TestingCommon/*csv*
