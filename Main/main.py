@@ -9,9 +9,11 @@ def gfg():
     if request.method == "POST":
        global sender
        sender = request.form.get("sender")
-       global last_name
-       last_name = request.form.get("lname")
-       return "Your name is "+ sender + last_name
+       global receiver
+       receiver = request.form.get("receiver")
+       global amount
+       amount = request.form.get("amount")
+       return "Success!: " + amount + " has been sent from " + sender + " to " + receiver
     # Return the 'success' form here
     return render_template("form.html")
  
@@ -20,12 +22,13 @@ if __name__=='__main__':
 
 # Main part of our program goes here
 
-# Print initial sender and receiver
+# Print initial sender and receiver (for debug)
 print("Sender address: " + sender + "\n")
-print("Receiver address: " + last_name + "\n")
+print("Receiver address: " + receiver + "\n")
+print("Amount:" + amount + "\n")
 
 # Collect environment data
 
-# Inject all out data into Azure db
+# Inject data frame into MS SQL Server db
 
 # Execute Smart Contract
