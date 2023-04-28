@@ -65,4 +65,4 @@ with open('data_template.csv', 'w', newline='') as file:
         writer.writerow([ Sender_Address, Receiver_Address, Date, Transact_Amt])
 
 # Execute Smart Contract
-os.system()
+os.system("& 'C:\Program Files\Java\jdk-14.0.1\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\david\AppData\Local\Temp\vscodesws_f3b85\jdt_ws\jdt.ls-java-project\bin' 'test.FirstTest'")
