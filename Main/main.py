@@ -4,6 +4,7 @@ import datetime
 import csv
 import pyodbc
 import pandas as pd
+import os
  
 # Flask constructor
 app = Flask(__name__)  
@@ -64,3 +65,4 @@ with open('data_template.csv', 'w', newline='') as file:
         writer.writerow([ Sender_Address, Receiver_Address, Date, Transact_Amt])
 
 # Execute Smart Contract
+os.system()
